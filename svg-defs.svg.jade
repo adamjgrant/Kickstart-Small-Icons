@@ -1,8 +1,8 @@
 mixin svg(file)
   != fs.readFileSync(file + '.svg', 'utf8')
 
-- each icon in icons
-  svg(xmlns="http://www.w3.org/2000/svg" style="display: none;") 
+svg(xmlns="http://www.w3.org/2000/svg" style="display: none;") 
+  - each icon in icons
     symbol(id="#{icon.id}" viewBox="#{icon.viewbox || defaultViewBox}")
       +svg(icon.id)
 
