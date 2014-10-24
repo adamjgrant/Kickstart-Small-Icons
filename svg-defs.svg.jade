@@ -3,6 +3,6 @@ mixin svg(file)
 
 - each icon in icons
   svg(xmlns="http://www.w3.org/2000/svg" style="display: none;") 
-    symbol(id="#{icon.id}" viewBox="#{icon.viewbox}")
+    symbol(id="#{icon.id}" viewBox="#{icon.viewbox || defaultViewBox}")
       +svg(icon.id)
 

@@ -1,12 +1,12 @@
 var gulp = require('gulp'),
   rename = require('gulp-rename'),
+  sass = require('gulp-ruby-sass'),
   jade = require('gulp-jade');
 
+var defaultViewBox = "0 0 32 32"
 var icons = [
-  {
-    id: "backpack",
-    viewbox: "bar"
-  }
+  { id: "backpack" },
+  { id: "clock" }
 ]
 
 gulp.task('default', function() {
@@ -15,7 +15,8 @@ gulp.task('default', function() {
       pretty: true,
       locals: {
         fs: require('fs'),
-        icons: icons
+        icons: icons,
+        defaultViewBox: defaultViewBox
       }
     }))
     .pipe(rename('svg-defs.svg'))
@@ -24,10 +25,16 @@ gulp.task('default', function() {
   gulp.src(['index.html.jade'])
     .pipe(jade({
       locals: {
-        icons: icons
+        fs: require('fs'),
+        icons: icons,
+        defaultViewBox: defaultViewBox
       },
       pretty: true
     }))
     .pipe(rename('index.html'))
+    .pipe(gulp.dest('./'))
+
+  gulp.src(['icons.sass'])
+    .pipe(sass())
     .pipe(gulp.dest('./'))
 });

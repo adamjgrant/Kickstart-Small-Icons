@@ -2,7 +2,12 @@ doctype html
 html
   head
     link(rel="stylesheet" href="icons.css")
+
   body
+    mixin icons()
+      != fs.readFileSync('svg-defs.svg', 'utf8')
+
+    +icons()
     - each icon in icons
       svg.icon
         use(xlink:href="##{icon.id}")
