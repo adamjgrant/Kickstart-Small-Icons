@@ -4,10 +4,30 @@ html
     link(rel="stylesheet" href="icons.css")
 
   body
-    mixin icons()
+    .wrapper
+      h1 SVG Icons
+      p Proof of concept for the consideration of PixelBuddha
+
       != fs.readFileSync('svg-defs.svg', 'utf8')
 
-    +icons()
-    - each icon in icons
-      svg.icon
-        use(xlink:href="##{icon.id}")
+      - each icon in icons
+        svg.icon
+          use(xlink:href="##{icon.id}")
+
+      p
+        | Each icon is created by using an svg tag with the class of "icon". 
+        | Inside of that, the user can refer to a single-word id for the icon.
+
+      :markdown
+        <span>
+
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backpack"></use>
+            </svg>
+
+      p
+        | These are actually symbol references to the main library of SVGs, which
+        | can be included in the HTML.
+
+      p The main benefits of doing it this way are outlined here: <a href="http://css-tricks.com/svg-symbol-good-choice-icons/">CSS Tricks Article</a>
+

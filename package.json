@@ -20,6 +20,7 @@
     "gulp": "^3.8.9",
     "gulp-jade": "^0.9.0",
     "gulp-rename": "^1.2.0",
-    "gulp-ruby-sass": "^0.7.1"
+    "gulp-ruby-sass": "^0.7.1",
+    "markdown-js": "0.0.3"
   }
 }
