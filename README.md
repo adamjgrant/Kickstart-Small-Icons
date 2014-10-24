@@ -1,6 +1,8 @@
 Small Icons
 ===========
 
+[Demo](http://ajkochanowicz.github.io/Kickstart-Small-Icons/)
+
 Building
 --------
 
