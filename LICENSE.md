@@ -1,3 +1,6 @@
+Small Icons (http://smallicons.net/) are not the property of Adam Kochanowicz.
+Any usage rights thereof are those of PixelBuddha (http://pixelbuddha.net/)
+
 The MIT License (MIT)
 
 Copyright (c) 2014 Adam Kochanowicz
