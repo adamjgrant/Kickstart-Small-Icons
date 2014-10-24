@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    link(rel="stylesheet" href="icons.css")
+  body
+    - each icon in icons
+      svg.icon
+        use(xlink:href="##{icon.id}")
