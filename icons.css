@@ -11,4 +11,19 @@ svg {
   padding: 25px;
   max-width: 1000px; }
 
+svg path.regular {
+  display: none; }
+svg path.large {
+  display: none; }
+@media screen and (min-width: 768px) {
+  svg path.small {
+    display: none; }
+  svg path.regular {
+    display: block; } }
+@media screen and (min-width: 1024px) {
+  svg path.regular {
+    display: none; }
+  svg path.large {
+    display: block; } }
+
 /*# sourceMappingURL=icons.css.map */

@@ -9,10 +9,15 @@ html
       p Proof of concept for the consideration of PixelBuddha
 
       != fs.readFileSync('svg-defs.svg', 'utf8')
+      != fs.readFileSync('svg-multi-paths.svg', 'utf8')
 
       - each icon in icons
         svg.icon
           use(xlink:href="##{icon.id}")
+
+      h2 Responsive test
+      svg.icon
+        use(xlink:href="#foo")
 
       p
         | Each icon is created by using an svg tag with the class of "icon". 
@@ -22,7 +27,7 @@ html
         <span>
 
             <svg class="icon">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backpack"></use>
+              <use xlink:href="#backpack"></use>
             </svg>
 
       p
