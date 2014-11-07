@@ -1,9 +1,17 @@
 svg
-  width: 32px
-  height: 32px
+  width: 14px
+  height: 14px
   display: inline-block
   vertical-align: middle
   margin: 25px
+
+  @media screen and (min-width: 768px)
+    width: 28px
+    height: 28px
+
+  @media screen and (min-width: 1024px)
+    width: 56px
+    height: 56px
 
 .wrapper
   display: block
@@ -12,22 +20,22 @@ svg
   max-width: 1000px
 
 svg
-  path.regular
+  path.rg
     display: none
 
-  path.large
+  path.lg
     display: none
 
   @media screen and (min-width: 768px)
-    path.small
+    path.sm
       display: none
 
-    path.regular
+    path.rg
       display: block
 
   @media screen and (min-width: 1024px)
-    path.regular
+    path.rg
       display: none
 
-    path.large
+    path.lg
       display: block

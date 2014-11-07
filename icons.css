@@ -1,9 +1,17 @@
 svg {
-  width: 32px;
-  height: 32px;
+  width: 14px;
+  height: 14px;
   display: inline-block;
   vertical-align: middle;
   margin: 25px; }
+  @media screen and (min-width: 768px) {
+    svg {
+      width: 28px;
+      height: 28px; } }
+  @media screen and (min-width: 1024px) {
+    svg {
+      width: 56px;
+      height: 56px; } }
 
 .wrapper {
   display: block;
@@ -11,19 +19,19 @@ svg {
   padding: 25px;
   max-width: 1000px; }
 
-svg path.regular {
+svg path.rg {
   display: none; }
-svg path.large {
+svg path.lg {
   display: none; }
 @media screen and (min-width: 768px) {
-  svg path.small {
+  svg path.sm {
     display: none; }
-  svg path.regular {
+  svg path.rg {
     display: block; } }
 @media screen and (min-width: 1024px) {
-  svg path.regular {
+  svg path.rg {
     display: none; }
-  svg path.large {
+  svg path.lg {
     display: block; } }
 
 /*# sourceMappingURL=icons.css.map */
