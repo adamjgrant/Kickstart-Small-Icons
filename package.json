@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ajkochanowicz/Kickstart-Small-Icons",
   "devDependencies": {
     "gulp": "^3.8.9",
+    "gulp-concat": "^2.4.1",
     "gulp-jade": "^0.9.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.5.0",

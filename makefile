@@ -1,0 +1,2 @@
+build:
+	@perl createicons.pl
