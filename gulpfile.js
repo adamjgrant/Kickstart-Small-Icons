@@ -125,7 +125,7 @@ gulp.task('default', function() {
       }
     }))
     .pipe(rename('svg-defs.svg'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./public/'))
 
   gulp.src(['index.html.jade'])
     .pipe(jade({
@@ -137,9 +137,9 @@ gulp.task('default', function() {
       pretty: true
     }))
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./public/'))
 
   gulp.src(['icons.sass'])
     .pipe(sass())
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./public/'))
 });
