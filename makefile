@@ -1,2 +1,2 @@
 build:
-	@perl createicons.pl
+	@./build.rb
