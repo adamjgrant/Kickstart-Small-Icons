@@ -17,8 +17,13 @@ def createResponsiveSVG
     f.truncate 0
     f.puts "<svg style=\"none\">\n"
     @svg_names.each do |svg_name|
-      f.puts "  <symbol>"
-      addPathsToFile(f)
+      base_name = File.basename(svg_name, '.svg')
+      f.puts "  <symbol id=\"#{base_name}\" viewBox=\"0 0 32 32\">"
+      f.puts "    <svg width=\"32\" height=\"32\">"
+      addPathsToFile(f, "large", base_name)
+      addPathsToFile(f, "regular", base_name)
+      addPathsToFile(f, "small", base_name)
+      f.puts "    </svg>"
       f.puts "  </symbol>"
     end
     f.puts "</svg>\n"
@@ -26,7 +31,15 @@ def createResponsiveSVG
 end
 
 def addPathsToFile(f, dir = nil, className = nil)
-  f.puts "    b\n"
+  unless dir.nil?
+    File.open("./svgs/#{dir}/#{className}.svg", 'r') do |d|
+      while line = d.gets
+        # TODO: Remove SVG tags
+        # TODO: Add classes to <path>s
+        f.puts "      #{line}"
+      end
+    end
+  end
 end
 
 build
