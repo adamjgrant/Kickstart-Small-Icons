@@ -1,4 +1,5 @@
 build:
+	@mkdir -p public
 	@echo "Generating SVGs"
 	@./build.rb
 

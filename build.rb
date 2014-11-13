@@ -12,7 +12,8 @@ def build
 end
 
 def createResponsiveSVG
-  @svg_names = Dir["./svgs/large/*.svg"]
+  @svg_names = Dir["./svgs/lg/*.svg"]
+  File.open("./public/responsive.svg", "a") # Create if it doesn't exist
   File.open("./public/responsive.svg", "w") do |f|
     f.truncate 0
     f.puts "<svg style=\"none\">\n"
@@ -20,9 +21,9 @@ def createResponsiveSVG
       base_name = File.basename(svg_name, '.svg')
       f.puts "  <symbol id=\"#{base_name}\" viewBox=\"0 0 32 32\">"
       f.puts "    <svg width=\"32\" height=\"32\">"
-      addPathsToFile(f, "large", base_name)
-      addPathsToFile(f, "regular", base_name)
-      addPathsToFile(f, "small", base_name)
+      addPathsToFile(f, "lg", base_name)
+      addPathsToFile(f, "rg", base_name)
+      addPathsToFile(f, "sm", base_name)
       f.puts "    </svg>"
       f.puts "  </symbol>"
     end

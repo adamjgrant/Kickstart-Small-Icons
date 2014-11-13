@@ -10,8 +10,6 @@ html
 
       h2 Responsive test
       != fs.readFileSync('public/responsive.svg', 'utf8')
-      svg.icon
-        use(xlink:href="#foo")
 
       - each icon in icons
         svg.icon
