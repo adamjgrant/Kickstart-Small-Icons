@@ -9,11 +9,9 @@ html
       p Proof of concept for the consideration of PixelBuddha
 
       h2 Responsive test
+      != fs.readFileSync('public/responsive.svg', 'utf8')
       svg.icon
         use(xlink:href="#foo")
-
-      != fs.readFileSync('svg-defs.svg', 'utf8')
-      != fs.readFileSync('svg-multi-paths.svg', 'utf8')
 
       - each icon in icons
         svg.icon
