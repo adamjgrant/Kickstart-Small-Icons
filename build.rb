@@ -34,8 +34,10 @@ def addPathsToFile(f, dir = nil, className = nil)
   unless dir.nil?
     File.open("./svgs/#{dir}/#{className}.svg", 'r') do |d|
       while line = d.gets
-        # TODO: Remove SVG tags
+        line = line.gsub %r{<svg([^<]+)>}, ''
+        line = line.gsub '</svg>', ''
         # TODO: Add classes to <path>s
+        line = line.gsub 'path fill', "path class=\"#{dir}\" fill"
         f.puts "      #{line}"
       end
     end
