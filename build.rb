@@ -32,14 +32,14 @@ def createResponsiveSVG
   # Write to responsive svg file
   File.open("./icons-responsive.svg", "w+") do |f|
     f.truncate 0
-    f.puts "<svg style=\"display: none\">\n"
+    f.puts "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none\">\n"
     @svg_names.each do |svg_name|
       f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
-      f.puts "    <svg width=\"32\" height=\"32\">"
+      # f.puts "    <svg width=\"32\" height=\"32\">"
       addPathsToFile(f, "lg", svg_name, true)
       addPathsToFile(f, "rg", svg_name, true)
       addPathsToFile(f, "sm", svg_name, true)
-      f.puts "    </svg>"
+      # f.puts "    </svg>"
       f.puts "  </symbol>"
     end
     f.puts "</svg>\n"
@@ -49,12 +49,12 @@ end
 def createSingleFidelitySVG(fidelity = 'sm')
   File.open("./icons-#{fidelity}.svg", "w+") do |f|
     f.truncate 0
-    f.puts "<svg style=\"display: none\">\n"
+    f.puts "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none\">\n"
     @svg_names.each do |svg_name|
       f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
-      f.puts "    <svg width=\"32\" height=\"32\">"
+      # f.puts "    <svg width=\"32\" height=\"32\">"
       addPathsToFile(f, fidelity, svg_name)
-      f.puts "    </svg>"
+      # f.puts "    </svg>"
       f.puts "  </symbol>"
     end
     f.puts "</svg>\n"
@@ -71,7 +71,7 @@ def addPathsToFile(f, dir = nil, className = nil, responsive = false)
         line = line.gsub 'g fill', "g class=\"#{dir}\" fill"
         line = line.gsub 'rect fill', "rect class=\"#{dir}\" fill"
       end
-      f.puts "      #{line}"
+      f.puts "    #{line}"
     end
   end
 end

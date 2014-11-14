@@ -12,9 +12,15 @@ html
       h2 Responsive test
       != fs.readFileSync('icons-responsive.svg', 'utf8')
 
+      h3 Using with inline SVG
       - each icon in icons
         svg.icon
           use(xlink:href="##{icon}")
+
+      h3 Using with linked SVG
+      - each icon in icons
+        svg.icon
+          use(xlink:href="icons-responsive.svg##{icon}")
 
       p
         | Each icon is created by using an svg tag with the class of "icon". 
