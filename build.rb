@@ -10,6 +10,9 @@ def build
   @svg_names.map! {|item| File.basename(item, '.svg')}
   createIconList
   createResponsiveSVG
+  createSingleFidelitySVG('sm')
+  createSingleFidelitySVG('rg')
+  createSingleFidelitySVG('lg')
 
   # Debugging
   @svg_names.each do |svg_name|
@@ -26,12 +29,8 @@ def createIconList
 end
 
 def createResponsiveSVG
-
-  # Create if it doesn't exist
-  File.open("./responsive.svg", "a")
-
   # Write to responsive svg file
-  File.open("./responsive.svg", "w") do |f|
+  File.open("./responsive.svg", "w+") do |f|
     f.truncate 0
     f.puts "<svg style=\"display: none\">\n"
     @svg_names.each do |svg_name|
@@ -47,17 +46,32 @@ def createResponsiveSVG
   end
 end
 
+def createSingleFidelitySVG(fidelity = 'sm')
+  File.open("./icon-#{fidelity}.svg", "w+") do |f|
+    f.truncate 0
+    f.puts "<svg style=\"display: none\">\n"
+    @svg_names.each do |svg_name|
+      f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
+      f.puts "    <svg width=\"32\" height=\"32\">"
+      addPathsToFile(f, fidelity, svg_name)
+      f.puts "    </svg>"
+      f.puts "  </symbol>"
+    end
+    f.puts "</svg>\n"
+  end
+end
+
 def addPathsToFile(f, dir = nil, className = nil)
-  unless dir.nil?
-    File.open("./lib/svgs/#{dir}/#{className}.svg", 'r') do |d|
-      while line = d.gets
-        line = line.gsub %r{<svg([^<]+)>}, ''
-        line = line.gsub '</svg>', ''
+  File.open("./lib/svgs/#{dir}/#{className}.svg", 'r') do |d|
+    while line = d.gets
+      line = line.gsub %r{<svg([^<]+)>}, ''
+      line = line.gsub '</svg>', ''
+      unless dir.nil?
         line = line.gsub 'path fill', "path class=\"#{dir}\" fill"
         line = line.gsub 'g fill', "g class=\"#{dir}\" fill"
         line = line.gsub 'rect fill', "rect class=\"#{dir}\" fill"
-        f.puts "      #{line}"
       end
+      f.puts "      #{line}"
     end
   end
 end
