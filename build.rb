@@ -1,29 +1,45 @@
 #!/usr/bin/env ruby
 
 require 'pathname'
+require 'json'
 
 def build
+  @svg_names = Dir.entries("./lib/svgs/lg").reject{|entry| entry =~ /^\.{1,2}$/}
+
+  # Edit array to only contain root name
+  @svg_names.map! {|item| File.basename(item, '.svg')}
+  createIconList
   createResponsiveSVG
 
   # Debugging
   @svg_names.each do |svg_name|
-    puts File.basename(svg_name, '.svg')
+    puts svg_name
+  end
+end
+
+def createIconList
+  File.open("./icons.js", "w+") do |f|
+    f.puts "var icons = #{@svg_names.to_json}"
+    f.puts "\n"
+    f.puts "module.exports = icons;"
   end
 end
 
 def createResponsiveSVG
-  @svg_names = Dir["./lib/svgs/lg/*.svg"]
-  File.open("./responsive.svg", "a") # Create if it doesn't exist
+
+  # Create if it doesn't exist
+  File.open("./responsive.svg", "a")
+
+  # Write to responsive svg file
   File.open("./responsive.svg", "w") do |f|
     f.truncate 0
     f.puts "<svg style=\"none\">\n"
     @svg_names.each do |svg_name|
-      base_name = File.basename(svg_name, '.svg')
-      f.puts "  <symbol id=\"#{base_name}\" viewBox=\"0 0 32 32\">"
+      f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
       f.puts "    <svg width=\"32\" height=\"32\">"
-      addPathsToFile(f, "lg", base_name)
-      addPathsToFile(f, "rg", base_name)
-      addPathsToFile(f, "sm", base_name)
+      addPathsToFile(f, "lg", svg_name)
+      addPathsToFile(f, "rg", svg_name)
+      addPathsToFile(f, "sm", svg_name)
       f.puts "    </svg>"
       f.puts "  </symbol>"
     end

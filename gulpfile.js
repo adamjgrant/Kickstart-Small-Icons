@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     jade = require('gulp-jade'),
     sass = require('gulp-ruby-sass'),
     connect = require('gulp-connect'),
+    icons = require('./icons'),
     fs = require('fs');
 
 gulp.task('default', ['compile'], function() {
@@ -22,14 +23,7 @@ gulp.task('compile', function() {
     .pipe(jade({
       locals: {
         fs: fs,
-        icons: [
-          {
-            id: 'foo'
-          },
-          {
-            id: 'bar'
-          }
-        ]
+        icons: icons
       }
     }))
     .pipe(gulp.dest('./'))
