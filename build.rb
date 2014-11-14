@@ -33,7 +33,7 @@ def createResponsiveSVG
   # Write to responsive svg file
   File.open("./responsive.svg", "w") do |f|
     f.truncate 0
-    f.puts "<svg style=\"none\">\n"
+    f.puts "<svg style=\"display: none\">\n"
     @svg_names.each do |svg_name|
       f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
       f.puts "    <svg width=\"32\" height=\"32\">"
