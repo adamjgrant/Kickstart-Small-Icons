@@ -30,15 +30,15 @@ end
 
 def createResponsiveSVG
   # Write to responsive svg file
-  File.open("./responsive.svg", "w+") do |f|
+  File.open("./icons-responsive.svg", "w+") do |f|
     f.truncate 0
     f.puts "<svg style=\"display: none\">\n"
     @svg_names.each do |svg_name|
       f.puts "  <symbol id=\"#{svg_name}\" viewBox=\"0 0 32 32\">"
       f.puts "    <svg width=\"32\" height=\"32\">"
-      addPathsToFile(f, "lg", svg_name)
-      addPathsToFile(f, "rg", svg_name)
-      addPathsToFile(f, "sm", svg_name)
+      addPathsToFile(f, "lg", svg_name, true)
+      addPathsToFile(f, "rg", svg_name, true)
+      addPathsToFile(f, "sm", svg_name, true)
       f.puts "    </svg>"
       f.puts "  </symbol>"
     end
@@ -47,7 +47,7 @@ def createResponsiveSVG
 end
 
 def createSingleFidelitySVG(fidelity = 'sm')
-  File.open("./icon-#{fidelity}.svg", "w+") do |f|
+  File.open("./icons-#{fidelity}.svg", "w+") do |f|
     f.truncate 0
     f.puts "<svg style=\"display: none\">\n"
     @svg_names.each do |svg_name|
@@ -61,12 +61,12 @@ def createSingleFidelitySVG(fidelity = 'sm')
   end
 end
 
-def addPathsToFile(f, dir = nil, className = nil)
+def addPathsToFile(f, dir = nil, className = nil, responsive = false)
   File.open("./lib/svgs/#{dir}/#{className}.svg", 'r') do |d|
     while line = d.gets
       line = line.gsub %r{<svg([^<]+)>}, ''
       line = line.gsub '</svg>', ''
-      unless dir.nil?
+      if responsive
         line = line.gsub 'path fill', "path class=\"#{dir}\" fill"
         line = line.gsub 'g fill', "g class=\"#{dir}\" fill"
         line = line.gsub 'rect fill', "rect class=\"#{dir}\" fill"
