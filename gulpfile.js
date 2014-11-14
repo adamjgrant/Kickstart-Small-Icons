@@ -6,19 +6,19 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['compile'], function() {
   connect.server({
-    root: 'public'
+    root: './'
   })
 });
 
 gulp.task('compile', function() {
-  gulp.src(['*.sass'])
+  gulp.src(['./lib/*.sass'])
     .pipe(sass())
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./'))
 
-  gulp.src(['*.js', '!gulpfile.js'])
-    .pipe(gulp.dest('./public'))
+  gulp.src(['./lib/*.js'])
+    .pipe(gulp.dest('./'))
 
-  return gulp.src(['*.jade'])
+  return gulp.src(['./lib/*.jade'])
     .pipe(jade({
       locals: {
         fs: fs,
@@ -32,5 +32,5 @@ gulp.task('compile', function() {
         ]
       }
     }))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./'))
 });

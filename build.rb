@@ -12,9 +12,9 @@ def build
 end
 
 def createResponsiveSVG
-  @svg_names = Dir["./svgs/lg/*.svg"]
-  File.open("./public/responsive.svg", "a") # Create if it doesn't exist
-  File.open("./public/responsive.svg", "w") do |f|
+  @svg_names = Dir["./lib/svgs/lg/*.svg"]
+  File.open("./responsive.svg", "a") # Create if it doesn't exist
+  File.open("./responsive.svg", "w") do |f|
     f.truncate 0
     f.puts "<svg style=\"none\">\n"
     @svg_names.each do |svg_name|
@@ -33,7 +33,7 @@ end
 
 def addPathsToFile(f, dir = nil, className = nil)
   unless dir.nil?
-    File.open("./svgs/#{dir}/#{className}.svg", 'r') do |d|
+    File.open("./lib/svgs/#{dir}/#{className}.svg", 'r') do |d|
       while line = d.gets
         line = line.gsub %r{<svg([^<]+)>}, ''
         line = line.gsub '</svg>', ''
