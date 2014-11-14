@@ -1,3 +1,3 @@
-var icons = ["bar","foo"]
+var icons = ["bar","fizz","foo"]
 
 module.exports = icons;

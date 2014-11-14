@@ -19,19 +19,19 @@ svg {
   padding: 25px;
   max-width: 1000px; }
 
-svg path.rg {
+svg .rg {
   display: none; }
-svg path.lg {
+svg .lg {
   display: none; }
 @media screen and (min-width: 768px) {
-  svg path.sm {
+  svg .sm {
     display: none; }
-  svg path.rg {
+  svg .rg {
     display: block; } }
 @media screen and (min-width: 1024px) {
-  svg path.rg {
+  svg .rg {
     display: none; }
-  svg path.lg {
+  svg .lg {
     display: block; } }
 
 /*# sourceMappingURL=icons.css.map */
